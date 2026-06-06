@@ -1,0 +1,58 @@
+>>SYSTEM_ID:
+VIRTUAL_CONTROLLER
+
+>>PRODUCTS_ID:
+RobotControl Version: 7.10.1
+RobotOS Version: 9.0.1
+Robots Version: 1.10.1
+Wizard Version: 1.5.2
+
+  RobotControl Base
+  English
+  3020-2 PROFINET Device
+  3101-x Absolute Accuracy
+  3106-1 World Zones
+  3113-1 Path Recovery
+  3108-1 SoftMove
+  3107-1 Collision Detection
+  3150-1 Collision Avoidance
+  3119-1 RobotStudio Connect
+  3120-1 FlexPendant Limited App Package
+  3120-2 FlexPendant Essential App Package
+  3151-1 FlexPendant Program Package
+  3121-1 RW Add-In Prepared
+  3114-1 Multitasking
+  3127-1 Integrated Vision Interface
+  SmartGripper Support for IRB 14050
+  Contact L
+  Leadthrough
+  No Category 0
+  C30-C6 for IRB 14050
+  Motor Commutation
+  Service Info System
+  Hall Sensor Calibration
+  Robots Base
+  IRB 14050-0.5/0.5
+  IRB 14050-0.5/0.5 Type A
+  Wizard
+
+>>HOME:
+All public files and directories
+
+>>SYSPAR:
+SYS.cfg
+SIO.cfg
+PROC.cfg
+MMC.cfg
+MOC.cfg
+EIO.cfg
+
+
+>>TASK1: (T_ROB1,,)
+PROGMOD/MainModule.modx @ 
+SYSMOD/VSG_tooldata.sysx @ 
+SYSMOD/Wizard_Params.sysx @ 
+
+
+
+>>EOF:

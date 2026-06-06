@@ -1,0 +1,117 @@
+MODULE MainModule
+    PERS tooldata Servo:=[TRUE,[[0,0,114.2],[1,0,0,0]],[0.215,[8.7,12.3,49.2],[1,0,0,0],0.00021,0.00024,0.00009]];
+    TASK PERS wobjdata scacchiera_a1:=[FALSE,TRUE,"",[[-500,-160,0],[1,0,0,0]],[[0,0,0],[1,0,0,0]]];
+    CONST jointtarget sollevato:=[[33.272887543,-22.874889853,32.537222108,-12.192258619,36.30905504,60.532761113],[-161.233535964,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget presa_a1:=[[20.000001763,20.000015121,75.000010819],[-0.000000016,1,-0.000000008,-0.000000026],[0,0,0,4],[14.315439547,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget sopra_a1:=[[20.000009178,20.000048036,174.999985139],[-0.000000048,1,-0.000000051,-0.000000046],[0,0,0,4],[14.31543664,9E+09,9E+09,9E+09,9E+09,9E+09]];
+
+    ! lato di una casella della scacchiera
+    CONST num lato:=40;
+    ! stringa con le coordinate di prelievo e deposito del pezzo
+    VAR string sFrom;
+    VAR string sTo;
+    ! numero decimale con le coordinate di prelievo e deposito del pezzo
+    VAR num numFrom;
+    VAR num numTo;
+    ! coordinate del punto di prelievo (1) e deposito del pezzo (2)
+    VAR num x1;
+    VAR num y1;
+    VAR num x2;
+    VAR num y2;
+
+    ! test comunicazione socket
+    VAR socketdev server_socket;
+    VAR socketdev client_socket;
+    VAR string received_data;
+
+    PROC main()
+        ! 1. Inizializzazione Socket Server (viene eseguita una sola volta)
+        SocketCreate server_socket;
+        SocketBind server_socket, "192.168.125.1", 1025;
+        SocketListen server_socket;
+        
+        TPWrite "Server in ascolto sulla porta 1025. Avvio ciclo mosse...";
+
+        ! 2. Ciclo continuo per la ricezione e l'esecuzione delle mosse
+        WHILE TRUE DO
+            TPWrite "In attesa di dati da Python...";
+            
+            ! Accetta la connessione da Python
+            SocketAccept server_socket, client_socket \Time:=WAIT_MAX;
+            
+            ! Ricevi i dati (es. stringa di 4 cifre come "1142")
+            SocketReceive client_socket \Str:=received_data;
+            TPWrite "Dati ricevuti: " + received_data;
+            
+            ! Chiudi immediatamente il client socket come richiesto
+            SocketClose client_socket;
+            
+            ! 3. Analisi dei dati ricevuti
+            ! Ora la stringa è nel formato "move,11,42" (lunghezza 10 caratteri)
+            IF StrLen(received_data) = 10 AND StrPart(received_data, 1, 5) = "move," THEN
+                sFrom := StrPart(received_data, 6, 2); ! Salta "move," e prende "11"
+                sTo := StrPart(received_data, 9, 2);   ! Salta la seconda virgola e prende "42"
+                
+                ! Converte le stringhe in valori numerici
+!                IF StrToVal(sFrom, numFrom) AND StrToVal(sTo, numTo) THEN
+                    
+                    ! Ricava le coordinate (yx -> x, y)
+                    x1 := numFrom MOD 10;
+                    y1 := numFrom DIV 10;
+                    x2 := numTo MOD 10;
+                    y2 := numTo DIV 10;
+                    
+                    TPWrite "Mossa elaborata: Da ("+ValToStr(x1)+","+ValToStr(y1)+") A ("+ValToStr(x2)+","+ValToStr(y2)+")";
+                    
+                    ! 4. Esecuzione dei movimenti del braccio
+                    TPWrite "Prova";
+                    MoveAbsJ sollevato, v500, z10, Servo \WObj:=wobj0;
+                    TPWrite "Sollevato";
+                    prelievo x1, y1;
+                    TPWrite "Prelievo";
+                    deposito x2, y2;
+                    TPWrite "Deposito";
+                    MoveAbsJ sollevato, v500, z10, Servo \WObj:=wobj0;
+                    
+                    TPWrite "Mossa completata. Pronto per la prossima.";
+                ELSE
+                    TPWrite "Errore: Conversione dei dati in valore numerico fallita.";
+                ENDIF
+            ELSE
+                TPWrite "Errore: Comando non riconosciuto o formato errato (atteso 'move,XX,YY').";
+            ENDIF
+            
+        ENDWHILE
+
+    ERROR
+        ! Gestione di sicurezza in caso di errori imprevisti per non bloccare il robot
+        TPWrite "Si è verificato un errore. Reset dei socket...";
+        SocketClose client_socket;
+        SocketClose server_socket;
+        ExitCycle; 
+    ENDPROC
+
+    PROC apriPinza()
+        g_GripOut;
+    ENDPROC
+
+    PROC chiudiPinza()
+        g_GripIn;
+    ENDPROC
+
+    PROC prelievo(num x,num y)
+        apriPinza;
+        MoveJ Offs(sopra_a1,(x-1)*lato,(y-1)*lato,0),v500,z10,Servo\WObj:=scacchiera_a1;
+        MoveL Offs(presa_a1,(x-1)*lato,(y-1)*lato,0),v500,fine,Servo\WObj:=scacchiera_a1;
+        chiudiPinza;
+        MoveL Offs(sopra_a1,(x-1)*lato,(y-1)*lato,0),v500,fine,Servo\WObj:=scacchiera_a1;
+    ENDPROC
+
+    PROC deposito(num x,num y)
+        MoveJ Offs(sopra_a1,(x-1)*lato,(y-1)*lato,0),v500,z10,Servo\WObj:=scacchiera_a1;
+        MoveL Offs(presa_a1,(x-1)*lato,(y-1)*lato,0),v500,fine,Servo\WObj:=scacchiera_a1;
+        apriPinza;
+        MoveL Offs(sopra_a1,(x-1)*lato,(y-1)*lato,0),v500,fine,Servo\WObj:=scacchiera_a1;
+    ENDPROC
+
+ENDMODULE

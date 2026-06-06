@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DashboardConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups />
+  <Dashboards />
+  <Cards>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_SERVICE_INT_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_SERVICE_INT_R1</Url>
+        <Title>Service interval (prod.time)</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_SERVICE_INT_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>hours</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_CALTIME_SERVICE_INT_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_CALTIME_SERVICE_INT_R1</Url>
+        <Title>Service interval (cal.time)</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_CALTIME_SERVICE_INT_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>years</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_W_LEVEL_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_W_LEVEL_R1</Url>
+        <Title>Service warn.level (prod.time)</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_W_LEVEL_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>%</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_CALTIME_W_LEVEL_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_CALTIME_W_LEVEL_R1</Url>
+        <Title>Service warn.level (cal.time)</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_CALTIME_W_LEVEL_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>%</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_GEAR_W_LEVEL_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_GEAR_W_LEVEL_R1</Url>
+        <Title>Service warn.level (est. life time)</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_GEAR_W_LEVEL_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>%</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_RESTART_TIME_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_RESTART_TIME_R1</Url>
+        <Title>Time of startup (since 1970)</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_RESTART_TIME_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>days</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_ELAPSED_TIME_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_ELAPSED_TIME_R1</Url>
+        <Title>Cal.time since last service</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_ELAPSED_TIME_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>days</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_R1</Url>
+        <Title>Duty time counter</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>hours</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_COUNT_R1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_COUNT_R1</Url>
+        <Title>Prod.time since last service</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA/PROPERTY_PRODTIME_COUNT_R1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>hours</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA_J1/PROPERTY_L10_H_R1_J1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA_J1/PROPERTY_L10_H_R1_J1</Url>
+        <Title>Est. service interval of gear box</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA_J1/PROPERTY_L10_H_R1_J1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>hours</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA_J1/PROPERTY_L10_H_COUNT_R1_J1">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA_J1/PROPERTY_L10_H_COUNT_R1_J1</Url>
+        <Title>Prod.time since gear box service</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/HW_DEVICES/ROB1/ROB1_SIS_DATA_J1/PROPERTY_L10_H_COUNT_R1_J1</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>hours</SystemUnit>
+      </Value>
+    </Card>
+    <Card id="/DEVICES/SW_RESOURCES/SYSTEM/SYSTEM_INFO/PROPERTY_SYSTEM_UPTIME">
+      <type>System</type>
+      <Label>
+        <Url>/DEVICES/SW_RESOURCES/SYSTEM/SYSTEM_INFO/PROPERTY_SYSTEM_UPTIME</Url>
+        <Title>Uptime</Title>
+      </Label>
+      <Value>
+        <Url>/DEVICES/SW_RESOURCES/SYSTEM/SYSTEM_INFO/PROPERTY_SYSTEM_UPTIME</Url>
+        <ValueType>System</ValueType>
+        <Unit />
+        <SystemUnit>hh:mm:ss</SystemUnit>
+      </Value>
+    </Card>
+  </Cards>
+</DashboardConfiguration>

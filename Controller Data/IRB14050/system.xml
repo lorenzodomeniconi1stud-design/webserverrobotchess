@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemProperties>
+  <SystemName>IRB14050</SystemName>
+  <SerialNo>VIRTUAL_CONTROLLER</SerialNo>
+  <UsedMedia>
+    <Media path="C:/Users/paolo.lumini/AppData/Local/ABB/RobotWare/RobotControl_7.10.1" name="RobotControl" version="7.10.1+355" versionName="7.10.1"/>
+    <Media path="C:/Users/paolo.lumini/AppData/Local/ABB/RobotWare/RobotOS_9.0.1" name="RobotOS" version="9.0.1+185" versionName="9.0.1"/>
+    <Media path="C:/Users/paolo.lumini/AppData/Local/ABB/RobotWare/Robots_1.10.1" name="Robots" version="1.10.1+120" versionName="1.10.1"/>
+    <Media path="C:/Users/paolo.lumini/AppData/Local/ABB/RobotWare/Wizard_1.5.2" name="Wizard" version="1.5.2" versionName="1.5.2"/>
+  </UsedMedia>
+  <ControlModule>
+    <Option descr="RobotControl Base"/>
+    <Option descr="English"/>
+    <Option descr="3020-2 PROFINET Device"/>
+    <Option descr="3101-x Absolute Accuracy"/>
+    <Option descr="3106-1 World Zones"/>
+    <Option descr="3113-1 Path Recovery"/>
+    <Option descr="3108-1 SoftMove"/>
+    <Option descr="3107-1 Collision Detection"/>
+    <Option descr="3150-1 Collision Avoidance"/>
+    <Option descr="3119-1 RobotStudio Connect"/>
+    <Option descr="3120-1 FlexPendant Limited App Package"/>
+    <Option descr="3120-2 FlexPendant Essential App Package"/>
+    <Option descr="3151-1 FlexPendant Program Package"/>
+    <Option descr="3121-1 RW Add-In Prepared"/>
+    <Option descr="3114-1 Multitasking"/>
+    <Option descr="3127-1 Integrated Vision Interface"/>
+    <Option descr="SmartGripper Support for IRB 14050"/>
+    <Option descr="Contact L"/>
+    <Option descr="Leadthrough"/>
+    <Option descr="No Category 0"/>
+  </ControlModule>
+  <DriveModule>
+    <Name>Robot1</Name>
+    <Option descr="C30-C6 for IRB 14050"/>
+    <Option descr="Motor Commutation"/>
+    <Option descr="Service Info System"/>
+    <Option descr="Hall Sensor Calibration"/>
+  </DriveModule>
+  <AdditionalOption>
+    <Name>Robots</Name>
+    <Option descr="Robots Base"/>
+    <Option descr="IRB 14050-0.5/0.5"/>
+    <Option descr="IRB 14050-0.5/0.5 Type A"/>
+  </AdditionalOption>
+  <AdditionalOption>
+    <Name>Wizard</Name>
+    <Option descr="Wizard"/>
+  </AdditionalOption>
+</SystemProperties>

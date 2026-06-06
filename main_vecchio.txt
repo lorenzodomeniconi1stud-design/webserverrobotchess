@@ -1,0 +1,103 @@
+MODULE MainModule
+    PERS tooldata Servo:=[TRUE,[[0,0,114.2],[1,0,0,0]],[0.215,[8.7,12.3,49.2],[1,0,0,0],0.00021,0.00024,0.00009]];
+    TASK PERS wobjdata scacchiera_a1:=[FALSE,TRUE,"",[[-500,-160,0],[1,0,0,0]],[[0,0,0],[1,0,0,0]]];
+    CONST jointtarget sollevato:=[[33.272887543,-22.874889853,32.537222108,-12.192258619,36.30905504,60.532761113],[-161.233535964,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget presa_a1:=[[20.000001763,20.000015121,75.000010819],[-0.000000016,1,-0.000000008,-0.000000026],[0,0,0,4],[14.315439547,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget sopra_a1:=[[20.000009178,20.000048036,174.999985139],[-0.000000048,1,-0.000000051,-0.000000046],[0,0,0,4],[14.31543664,9E+09,9E+09,9E+09,9E+09,9E+09]];
+
+    ! lato di una casella della scacchiera
+    CONST num lato:=40;
+    ! stringa con le coordinate di prelievo e deposito del pezzo
+    VAR string sFrom:="11";
+    VAR string sTo:="42";
+    ! numero decimale con le coordinate di prelievo e deposito del pezzo
+    ! ottenuti convertendo le stringhe in valori numerici
+    VAR num numFrom;
+    VAR num numTo;
+    ! coordinate del punto di prelievo (1) e deposito del pezzo (2)
+    VAR num x1;
+    VAR num y1;
+    VAR num x2;
+    VAR num y2;
+
+    ! test comunicazione socket
+    VAR socketdev server_socket;
+    VAR socketdev client_socket;
+    VAR string received_data;
+
+    PROC main()
+
+!        ! converto la stringa con le coordinate che arrivano dal PC in valori numerici
+!        sFrom:="34";
+!        IF StrToVal(sFrom,numFrom)=FALSE THEN
+!            TPWrite "Conversion Failed!";
+!            Stop;
+!        ENDIF
+!        IF StrToVal(sTo,numTo)=FALSE THEN
+!            TPWrite "Conversion Failed!";
+!            Stop;
+!        ENDIF
+
+!        ! ricava le coordinate dal valore numerico (yx -> x, y)
+!        x1:=numFrom MOD 10;
+!        ! cifra meno significativa
+!        y1:=numFrom DIV 10;
+!        ! cifra più significativa
+!        x2:=numTo MOD 10;
+!        ! cifra meno significativa
+!        y2:=numTo DIV 10;
+!        ! cifra più significativa
+
+
+!        ! prelevo il pezzo in a1
+!        MoveAbsJ sollevato,v500,z10,Servo\WObj:=wobj0;
+!        prelievo x1,y1;
+!        deposito x2,y2;
+        ! 1. Crea il socket
+        SocketCreate server_socket;
+        
+        ! 2. Lega il socket alla porta 1025 (accetta connessioni da ogni IP)
+        SocketBind server_socket, "192.168.125.1", 1025;
+        
+        ! 3. Mettiti in ascolto
+        SocketListen server_socket;
+        
+        TPWrite "In attesa di Python sulla porta 1025...";
+        
+        ! 4. Accetta la connessione da Python
+        SocketAccept server_socket, client_socket \Time:=WAIT_MAX;
+        
+        ! 5. Ricevi i dati (stringa)
+        SocketReceive client_socket \Str:=received_data;
+        
+        TPWrite "Dati ricevuti: " + received_data;
+        
+        ! 6. Chiudi tutto
+        SocketClose client_socket;
+        SocketClose server_socket;
+    ENDPROC
+
+    PROC apriPinza()
+        g_GripOut;
+    ENDPROC
+
+    PROC chiudiPinza()
+        g_GripIn;
+    ENDPROC
+
+    PROC prelievo(num x,num y)
+        apriPinza;
+        MoveJ Offs(sopra_a1,(x-1)*lato,(y-1)*lato,0),v500,z10,Servo\WObj:=scacchiera_a1;
+        MoveL Offs(presa_a1,(x-1)*lato,(y-1)*lato,0),v500,fine,Servo\WObj:=scacchiera_a1;
+        chiudiPinza;
+        MoveL Offs(sopra_a1,(x-1)*lato,(y-1)*lato,0),v500,fine,Servo\WObj:=scacchiera_a1;
+    ENDPROC
+
+    PROC deposito(num x,num y)
+        MoveJ Offs(sopra_a1,(x-1)*lato,(y-1)*lato,0),v500,z10,Servo\WObj:=scacchiera_a1;
+        MoveL Offs(presa_a1,(x-1)*lato,(y-1)*lato,0),v500,fine,Servo\WObj:=scacchiera_a1;
+        apriPinza;
+        MoveL Offs(sopra_a1,(x-1)*lato,(y-1)*lato,0),v500,fine,Servo\WObj:=scacchiera_a1;
+    ENDPROC
+
+ENDMODULE
